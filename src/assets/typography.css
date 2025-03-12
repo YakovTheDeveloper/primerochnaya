@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Good Vibes Cyr';
+    src: url('./fonts/GoodVibesCyr.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400, 500, 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+.title {
+    font-family: 'Good Vibes Cyr';
+    color: var(--color-dark-beige);
+    text-align: center;
+}
+
+.title.large {
+    font-size: 200px;
+}
+
+.title.popup {
+    font-size: 80px;
+}
+
+.text {
+    font-size: 64px;
+}
+
+body.contrast .title {
+    color: var(--color-dark-beige-contrast);
+}

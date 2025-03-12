@@ -1,0 +1,39 @@
+/* .btn {
+    padding: 48px;
+    color: var(--color-white);
+    border-radius: 40px;
+    font-size: 64px;
+}
+
+.btn_small {
+    padding: 24px 48px;
+}
+
+.btn_primary {
+    background-color: var(--color-beige);
+}
+
+.btn_secondary {
+    background-color: transparent;
+    outline: 12px solid var(--color-beige);
+    color: var(--color-beige);
+}
+
+
+.btn_start {
+    background-color: var(--color-dark-beige-80);
+    outline: 12px solid var(--color-beige);
+}
+
+body.contrast .btn_primary {
+    background-color: var(--color-beige-contrast-button);
+}
+
+body.contrast .btn_secondary {
+    outline-color: var(--color-beige-contrast-button);
+    color: var(--color-beige-contrast-button);
+}
+
+body.contrast .btn_start {
+    outline-color: var(--color-beige-contrast-button);
+} */

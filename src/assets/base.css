@@ -1,0 +1,85 @@
+/* color palette from <https://github.com/vuejs/theme> */
+:root {
+
+  --color-dark-beige: #C28B3A;
+  --color-dark-beige-contrast: #463214;
+  --color-dark-beige-80: rgba(194, 139, 58, 0.8);
+  --color-light-beige: #FFF2D9;
+  --gradient-dark-beige-contrast: linear-gradient(360deg, rgba(70, 50, 20, 1) 0%, rgba(70, 50, 20, 0.6) 100%);
+  --gradient-beige: linear-gradient(180deg, #C28B3A 0%, rgba(194, 139, 58, 0) 100%);
+  --gradient-bg: linear-gradient(180deg, rgba(243, 224, 188, 1) 0%, rgba(243, 224, 188, 0) 100%);
+  --gradient-dark: linear-gradient(180deg, rgba(243, 224, 188, 1) 0%, rgba(243, 224, 188, 0) 100%);
+
+  --color-beige-contrast-button: #a67124;
+  --color-beige: #F3C177;
+  --color-beige-contrast: #F5D088;
+  --color-white: #FFFFFF;
+
+  --color-bg: #FFFFFF;
+  --color-bg-contrast: rgba(126, 107, 78, 1);
+  --color-title: var(--color-dark-beige);
+  
+  --outline-width-select-card: 12px;
+  --border-radius-select-card: 40px;
+
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--vt-c-black);
+    --color-background-soft: var(--vt-c-black-soft);
+    --color-background-mute: var(--vt-c-black-mute);
+
+    --color-border: var(--vt-c-divider-dark-2);
+    --color-border-hover: var(--vt-c-divider-dark-1);
+
+    --color-heading: var(--vt-c-text-dark-1);
+    --color-text: var(--vt-c-text-dark-2);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: rgb(247, 247, 247);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button{
+  border: none;
+}
+
+li{
+  list-style: none;
+}

@@ -1,0 +1,25 @@
+@import './base.css';
+@import './typography.css';
+@import './button.css';
+
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+  width: fit-content;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+.offset {
+  margin: 80px;
+}
+
+.offset.title {
+  margin: 150px 80px 80px;
+}
