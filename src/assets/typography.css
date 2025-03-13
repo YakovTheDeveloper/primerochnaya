@@ -18,6 +18,7 @@
     font-family: 'Good Vibes Cyr';
     color: var(--color-dark-beige);
     text-align: center;
+    line-height: normal;
 }
 
 .title.large {

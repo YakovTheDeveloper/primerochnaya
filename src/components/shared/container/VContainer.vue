@@ -30,7 +30,7 @@ body.contrast .container {
     align-items: stretch;
     justify-content: space-between;
     flex-direction: column;
-    /* flex-grow: 1; */
+    overflow: hidden;
     background: var(--gradient-bg), url('@/assets/img/bg.png') center no-repeat;
     background: url('@/assets/img/bg.png') center no-repeat;
 }

@@ -1,12 +1,14 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import type { ResultFetchData, Stage, StatusData } from './types'
-
+import { useRoute, useRouter } from 'vue-router'
+import MOCK_RESULT_IMG from '@/assets/img/photo/result.png'
 export const useDataStore = defineStore('store', () => {
+
+  const router = useRouter()
 
   const stage = ref<Stage>('idle')
   const processingResult = ref<StatusData>(null)
-
 
   const setStage = (value: Stage) => stage.value = value
 
@@ -16,6 +18,20 @@ export const useDataStore = defineStore('store', () => {
     stage.value = 'idle'
     processingResult.value = null
   }
+
+  const test = (what: 'success' | 'fail') => {
+    if (what === 'success') {
+      router.push('/photo-result')
+      stage.value = 'idle'
+      processingResult.value = { data: { imgUrl: MOCK_RESULT_IMG }, status: 'success' }
+      return
+    }
+    stage.value = 'idle'
+    processingResult.value = { status: 'face-not-detected' }
+
+  }
+
+
 
   async function fetchSendUserPhoto(): Promise<ResultFetchData> {
     return new Promise((resolve) => {
@@ -62,5 +78,5 @@ export const useDataStore = defineStore('store', () => {
       .finally(() => stage.value = 'idle')
   }
 
-  return { stage, processingResult, sendUserPhotoHandler, makePhoto, setStage, resetStore }
+  return { stage, processingResult, sendUserPhotoHandler, makePhoto, setStage, resetStore, test }
 })

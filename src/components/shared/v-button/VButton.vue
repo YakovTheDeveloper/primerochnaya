@@ -47,6 +47,7 @@ defineEmits(['click']);
     &_secondary {
         background-color: transparent;
         outline: 12px solid var(--color-beige);
+        outline-offset: -12px;
         color: var(--color-beige);
     }
 

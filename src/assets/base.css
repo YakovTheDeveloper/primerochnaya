@@ -12,13 +12,14 @@
 
   --color-beige-contrast-button: #a67124;
   --color-beige: #F3C177;
+  --color-beige-alpha: rgba(243, 193, 119, 0.6);
   --color-beige-contrast: #F5D088;
   --color-white: #FFFFFF;
 
   --color-bg: #FFFFFF;
   --color-bg-contrast: rgba(126, 107, 78, 1);
   --color-title: var(--color-dark-beige);
-  
+
   --outline-width-select-card: 12px;
   --border-radius-select-card: 40px;
 
@@ -76,10 +77,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-button{
+button {
   border: none;
 }
 
-li{
+li {
   list-style: none;
 }
