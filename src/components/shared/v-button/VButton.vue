@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-    variant: 'primary' | 'secondary' | 'start' | 'special'
+    variant: 'primary' | 'secondary' | 'start' | 'special' | 'text'
     size: 'small' | 'medium'
 }>()
 
@@ -58,6 +58,11 @@ defineEmits(['click']);
     &_special {
         background-color: #fff;
         color: var(--color-dark-beige);
+    }
+
+    &_text {
+        background-color: transparent;
+        color: var(--color-white);
     }
 
     body.contrast &_primary {

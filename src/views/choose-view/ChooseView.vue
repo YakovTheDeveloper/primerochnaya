@@ -25,7 +25,7 @@ const onChoose = (data: any) => {
 const toggleContrast = () => {
     document.querySelector('body')?.classList.toggle('contrast')
 }
-
+const router = useRouter()
 </script>
 
 <template>
@@ -37,7 +37,7 @@ const toggleContrast = () => {
         <div class="choose-variants offset">
             <VButton size="small" variant="special" class="special-btn" @click="toggleContrast">
                 <template #icon>
-                   <IconContrast/>
+                    <IconContrast />
                 </template>
                 Режим для слабовидящих
             </VButton>
@@ -58,7 +58,7 @@ const toggleContrast = () => {
                     </li>
                 </ul>
             </div>
-            <VButton variant="primary">Выбрать</VButton>
+            <VButton variant="primary" @click="router.push('/make-photo')">Выбрать</VButton>
         </div>
     </VContainer>
 </template>
@@ -66,9 +66,14 @@ const toggleContrast = () => {
 
 
 <style scoped lang="scss">
-.choose{
+.choose {
     position: relative;
+
+    * {
+        z-index: 1;
+    }
 }
+
 .choose-variants {
     display: flex;
     flex-direction: column;
@@ -76,17 +81,19 @@ const toggleContrast = () => {
     align-items: stretch;
 }
 
-.choose-main-photo{
+.choose-main-photo {
     position: absolute;
     z-index: 0;
     width: 100%;
-    height: 3000px;
-    bottom: 10%;
+    height: 3006px;
+    top: 834px;
     right: 0;
     left: 0;
 
-    img{
+    img {
         width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
 }
 

@@ -25,11 +25,15 @@
 }
 
 .title.popup {
+    font-family: 'Montserrat', sans-serif;
     font-size: 80px;
+    font-weight: 700;
+    color: var(--color-dark-beige);
 }
 
 .text {
     font-size: 64px;
+    color: var(--color-dark-beige);
 }
 
 body.contrast .title {
