@@ -7,10 +7,10 @@ const { test } = useDataStore()
 
 <template>
   <RouterView />
-  <div class="test">
+  <!-- <div class="test">
     <VButton @click="test('success')">тест успех</VButton>
     <VButton @click="test('fail')">тест фейл</VButton>
-  </div>
+  </div> -->
 </template>
 
 <style scoped>

@@ -39,7 +39,7 @@ const shouldShow = computed(() => store.stage.value === 'idle' && !store.process
         border-radius: 40px;
         background-color: var(--color-light-beige);
         
-        body.contrast&{
+        body.contrast &{
             background-color: var(--color-light-beige);
         }
     }
