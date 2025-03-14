@@ -50,8 +50,13 @@
   font-weight: normal;
 }
 
+html{
+  height: 4040px;
+  width: 2360px;
+}
+
 body {
-  min-height: 100vh;
+
   color: var(--color-text);
   background: rgb(247, 247, 247);
   transition:

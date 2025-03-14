@@ -1,6 +1,12 @@
 <template>
-    <div class="popup-body">
+    <div :class="['popup-body', $slots.actions && 'popup-body_width']">
+        <div v-if="$slots.icon" class="popup-body__icon">
+            <slot name="icon"></slot>
+        </div>
         <slot></slot>
+        <div v-if="$slots.actions" class="popup-body__actions">
+            <slot name="actions"></slot>
+        </div>
     </div>
 </template>
 
@@ -8,9 +14,9 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .popup-body {
-    padding: 80px 140px;
+    padding: 80px;
     margin: 0 auto;
     background-color: var(--color-light-beige);
     border-radius: 80px;
@@ -18,6 +24,38 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 24px;
+
+
+    &_width {
+        width: 1326px;
+        max-width: 1326px;
+    }
+
+    &__icon {
+        margin-bottom: 24px;
+        color: var(--color-dark-beige);
+    }
+
+    &__actions {
+        width: 100%;
+        display: flex;
+        gap: 24px;
+        margin-top: 24px;
+
+        >* {
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+
+        > :only-child {
+            flex-basis: 100%;
+        }
+    }
+
+    body.contrast &__icon {
+        color: var(--color-dark-beige-contrast);
+    }
 
 }
 </style>

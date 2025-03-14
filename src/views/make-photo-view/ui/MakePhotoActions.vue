@@ -1,6 +1,6 @@
 <template>
     <div class="make-photo-actions">
-        <VButton size="medium" variant="text" class="make-photo-actions__back-btn">
+        <VButton size="medium" variant="text" class="make-photo-actions__back-btn" @click="onBack">
             <template #icon>
                 <IconBack />
             </template>
@@ -21,8 +21,13 @@ import { storeToRefs } from 'pinia';
 import { watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const { setStage } = useDataStore()
 const store = storeToRefs(useDataStore())
+
+const onBack = () => {
+    router.back();
+}
 
 const onPhoto = () => {
     setStage('countdown')
@@ -30,8 +35,6 @@ const onPhoto = () => {
 watchEffect(() => {
     console.log(`output->stage`, store.stage.value)
 })
-
-const router = useRouter()
 
 
 </script>

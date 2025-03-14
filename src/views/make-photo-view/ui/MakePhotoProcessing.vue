@@ -10,19 +10,27 @@
         <PopupBody>
             <p class="title popup">Лицо не обнаружено</p>
             <p class="text">Попробуйте ещё раз</p>
-            <div>
+            <template #actions>
                 <VButton variant="secondary" @click="onExit">
+                    <template #icon>
+                        <IconHome />
+                    </template>
                     Выйти
                 </VButton>
                 <VButton variant="primary" @click="onAgain">
+                    <template #icon>
+                        <IconAgain />
+                    </template>
                     Ещё раз
                 </VButton>
-            </div>
+            </template>
         </PopupBody>
     </Overlay>
 </template>
 
 <script setup lang="ts">
+import IconAgain from '@/components/icons/IconAgain.vue';
+import IconHome from '@/components/icons/IconHome.vue';
 import Loader from '@/components/shared/loader/Loader.vue';
 import Overlay from '@/components/shared/overlay/Overlay.vue';
 import PopupBody from '@/components/shared/popup/popupBody.vue';
@@ -50,16 +58,4 @@ const onExit = () => {
 
 </script>
 
-<style scoped>
-.make-photo-processing {
-    padding: 80px 140px;
-    margin: 0 auto;
-    background-color: var(--color-light-beige);
-    border-radius: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-}
-</style>
+<style scoped></style>

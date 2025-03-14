@@ -1,7 +1,9 @@
 <template>
-    <button :class="['btn', `btn_${variant}`, `btn_${size}`]" @click="$emit('click')">
+    <button :disabled="props.disabled" :class="['btn', `btn_${variant}`, `btn_${size}`]" @click="$emit('click')">
         <span class="btn-inner">
-            <slot name="icon"></slot>
+            <span v-if="$slots.icon" class="btn__icon-container">
+                <slot name="icon"></slot>
+            </span>
             <slot></slot>
         </span>
     </button>
@@ -11,6 +13,7 @@
 const props = defineProps<{
     variant: 'primary' | 'secondary' | 'start' | 'special' | 'text'
     size: 'small' | 'medium'
+    disabled: boolean
 }>()
 
 defineEmits(['click']);
@@ -25,6 +28,19 @@ defineEmits(['click']);
     border-radius: 40px;
     font-size: 64px;
     cursor: pointer;
+
+    &:disabled {
+        cursor: default;
+        opacity: 0.3;
+    }
+
+    &__icon-container {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       position: relative;
+       bottom: 1px;
+    }
 
     &-inner {
         display: flex;
@@ -49,6 +65,10 @@ defineEmits(['click']);
         outline: 12px solid var(--color-beige);
         outline-offset: -12px;
         color: var(--color-beige);
+
+        * {
+            fill: var(--color-beige);
+        }
     }
 
     &_start {
@@ -73,6 +93,10 @@ defineEmits(['click']);
     body.contrast &_secondary {
         outline-color: var(--color-beige-contrast-button);
         color: var(--color-beige-contrast-button);
+
+        * {
+            fill: var(--color-beige-contrast-button);
+        }
     }
 
     body.contrast &_start {

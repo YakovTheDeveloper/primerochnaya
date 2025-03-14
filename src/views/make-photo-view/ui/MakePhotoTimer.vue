@@ -1,5 +1,5 @@
 <template>
-    <div class="make-photo-timer" v-if="shouldShow">
+    <div class=" text make-photo-timer" v-if="shouldShow">
         {{ countdown }}
     </div>
 </template>

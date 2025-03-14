@@ -6,6 +6,13 @@
   margin: 0 auto;
   font-weight: normal;
   width: fit-content;
+  padding: 100px;
+  background-color: var(--color-white);
+  position: relative;
+}
+
+body.contrast #app {
+  background-color: var(--color-bg-contrast);
 }
 
 a,

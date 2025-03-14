@@ -35,8 +35,17 @@
 .text {
     font-size: 64px;
     color: var(--color-dark-beige);
+    line-height: normal;
+}
+
+.text.center {
+    text-align: center;
 }
 
 body.contrast .title {
+    color: var(--color-dark-beige-contrast);
+}
+
+body.contrast .text{
     color: var(--color-dark-beige-contrast);
 }

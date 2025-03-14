@@ -5,9 +5,9 @@
             <p class="text">Затем нажмите кнопку снизу</p>
         </div>
         <MakePhotoTimer class="position-center" />
-        <MakePhotoProcessing />
         <MakePhotoActions v-if="shouldShow" />
     </VContainer>
+    <MakePhotoProcessing />
 </template>
 
 <script setup lang="ts">
@@ -16,7 +16,6 @@ import VButton from '@/components/shared/v-button/VButton.vue';
 import { useRouter } from 'vue-router';
 import MakePhotoActions from './ui/MakePhotoActions.vue';
 import { computed, ref } from 'vue';
-import MakePhotoStatus from './ui/MakePhotoStatus.vue';
 import { storeToRefs } from 'pinia';
 import { useDataStore } from '@/stores/counter';
 import MakePhotoTimer from './ui/MakePhotoTimer.vue';
@@ -39,6 +38,10 @@ const shouldShow = computed(() => store.stage.value === 'idle' && !store.process
         padding: 48px;
         border-radius: 40px;
         background-color: var(--color-light-beige);
+        
+        body.contrast&{
+            background-color: var(--color-light-beige);
+        }
     }
 
 

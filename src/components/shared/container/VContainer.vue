@@ -14,9 +14,9 @@ import { useRouter } from 'vue-router';
 
 <style scoped>
 .container {
-    height: 4040px;
-    width: 2360px;
-    padding: 100px;
+    height: 3840px;
+    width: 2160px;
+    margin: auto;
     background-color: var(--color-bg);
 }
 

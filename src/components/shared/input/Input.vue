@@ -33,5 +33,20 @@ defineExpose({
         color: var(--color-beige);
         font-weight: 700;
     }
+
+    body.contrast & {
+        border-color: rgba(166, 113, 36, 0.6);
+        outline-color: var(--color-beige-contrast-button);
+        color: var(--color-dark-beige-contrast);
+    }
+
+    body.contrast &:focus {
+        border-color: var(--color-beige-contrast-button);
+    }
+
+    body.contrast &::placeholder {
+        color: var(--color-beige-contrast-button);
+    }
+
 }
 </style>
