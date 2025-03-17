@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import type { ResultFetchData, Stage, StatusData } from './types'
 import { useRoute, useRouter } from 'vue-router'
 import MOCK_RESULT_IMG from '@/assets/img/photo/result.png'
+import { Routes } from '@/router'
 export const useDataStore = defineStore('store', () => {
 
   const router = useRouter()
@@ -19,9 +20,11 @@ export const useDataStore = defineStore('store', () => {
     processingResult.value = null
   }
 
+  const resetStage = () => stage.value = 'idle'
+
   const test = (what: 'success' | 'fail') => {
     if (what === 'success') {
-      router.push('/photo-result')
+      router.push(Routes.PhotoResult)
       stage.value = 'idle'
       processingResult.value = { data: { imgUrl: MOCK_RESULT_IMG }, status: 'success' }
       return
@@ -39,7 +42,7 @@ export const useDataStore = defineStore('store', () => {
         if (Math.random() > 0.5) {
           resolve({
             result: {
-              imgUrl: ''
+              imgUrl: MOCK_RESULT_IMG
             },
             isError: false,
             message: ''
@@ -78,5 +81,5 @@ export const useDataStore = defineStore('store', () => {
       .finally(() => stage.value = 'idle')
   }
 
-  return { stage, processingResult, sendUserPhotoHandler, makePhoto, setStage, resetStore, test }
+  return { stage, processingResult, sendUserPhotoHandler, makePhoto, setStage, resetStore, test, resetStage }
 })

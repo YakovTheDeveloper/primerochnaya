@@ -5,10 +5,12 @@
 #app {
   margin: 0 auto;
   font-weight: normal;
-  width: fit-content;
   padding: 100px;
   background-color: var(--color-white);
   position: relative;
+  width: 2360px;
+  height: 4040px;
+  overflow: hidden;
 }
 
 body.contrast #app {

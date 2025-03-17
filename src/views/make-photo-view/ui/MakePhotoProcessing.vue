@@ -35,6 +35,7 @@ import Loader from '@/components/shared/loader/Loader.vue';
 import Overlay from '@/components/shared/overlay/Overlay.vue';
 import PopupBody from '@/components/shared/popup/popupBody.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
+import { Routes } from '@/router';
 import { useDataStore } from '@/stores/counter';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
@@ -53,7 +54,7 @@ const router = useRouter()
 const onAgain = () => resetStore()
 const onExit = () => {
     resetStore()
-    router.push('/')
+    router.push(Routes.Home)
 }
 
 </script>

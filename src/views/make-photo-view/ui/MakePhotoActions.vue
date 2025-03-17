@@ -16,6 +16,7 @@
 import IconBack from '@/components/icons/IconBack.vue';
 import IconCamera from '@/components/icons/IconCamera.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
+import { Routes } from '@/router';
 import { useDataStore } from '@/stores/counter';
 import { storeToRefs } from 'pinia';
 import { watchEffect } from 'vue';
@@ -26,7 +27,7 @@ const { setStage } = useDataStore()
 const store = storeToRefs(useDataStore())
 
 const onBack = () => {
-    router.back();
+    router.replace(Routes.Choose)
 }
 
 const onPhoto = () => {

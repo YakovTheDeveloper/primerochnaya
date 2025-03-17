@@ -44,6 +44,7 @@ const { resetStore } = useDataStore()
 const router = useRouter()
 
 const imgUrl = computed(() => {
+    console.log(`output->`, store.processingResult.value)
     if (store.processingResult.value?.status === 'success') {
         return store.processingResult.value?.data.imgUrl
     }
@@ -59,7 +60,9 @@ const onHome = () => {
     resetStore()
     router.push(Routes.Home)
 }
-const onDownload = () => { }
+const onDownload = () => {
+    router.push(Routes.GetPhoto)
+}
 
 </script>
 

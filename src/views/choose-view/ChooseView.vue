@@ -4,21 +4,27 @@ import VContainer from '@/components/shared/container/VContainer.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import MockCostumeImg from '@/assets/img/photo/costume-1.png'
+import MockCostumeImg1 from '@/assets/img/photo/costume-1.png'
+import MockCostumeImg2 from '@/assets/img/photo/costume-2.png'
+import MockCostumeImg3 from '@/assets/img/photo/costume-3.png'
+import MockCostumeImg4 from '@/assets/img/photo/costume-4.png'
 import IconContrast from '@/components/icons/IconContrast.vue';
+import { Routes } from '@/router';
+import VSlideContainer from '@/components/shared/container/VSlideContainer.vue';
 
 const DATA = [
-    { id: 0, imgUrl: MockCostumeImg, name: 'Мужской казачий костюм' },
-    { id: 1, imgUrl: MockCostumeImg, name: 'Мужской казачий костюм 2' },
-    { id: 2, imgUrl: MockCostumeImg, name: 'Мужской казачий костюм 3' },
-    { id: 3, imgUrl: MockCostumeImg, name: 'Мужской казачий костюм 4' },
-    { id: 4, imgUrl: MockCostumeImg, name: 'Мужской казачий костюм 5' },
-    { id: 5, imgUrl: MockCostumeImg, name: 'Мужской казачий костюм 6' },
+    { id: 0, imgUrl: MockCostumeImg1, name: 'Мужской казачий костюм' },
+    { id: 1, imgUrl: MockCostumeImg2, name: 'Женский бальный костюм' },
+    { id: 2, imgUrl: MockCostumeImg3, name: 'Мальчиковый костюм Цесаревича' },
+    { id: 3, imgUrl: MockCostumeImg4, name: 'Девочковый народный костюм' },
+    { id: 4, imgUrl: MockCostumeImg1, name: 'Мужской казачий костюм 5' },
+    { id: 5, imgUrl: MockCostumeImg2, name: 'Мужской казачий костюм 6' },
 ]
 
 const chosenData = ref(DATA[0])
 
 const onChoose = (data: any) => {
+
     chosenData.value = data
 }
 
@@ -29,45 +35,47 @@ const router = useRouter()
 </script>
 
 <template>
-    <VContainer class="choose">
-        <h1 class="title large offset">{{ chosenData?.name }}</h1>
-        <div class="choose-main-photo">
-            <img :src="MockCostumeImg" alt="">
-        </div>
-        <div class="choose-variants offset">
-            <VButton size="small" variant="special" class="special-btn" @click="toggleContrast">
-                <template #icon>
-                    <IconContrast />
-                </template>
-                Режим для слабовидящих
-            </VButton>
-            <div class="choose-content">
-                <ul class="choose-content-list">
-                    <li v-for="item in DATA" :class="[
-                        'choose-content-item',
-                        item.id === chosenData?.id && 'choose-content-item_active',
-                    ]" @click="onChoose(item)">
-                        <div class="choose-content-item__photo">
-                            <img :src="item.imgUrl" alt="costume-photo">
-                        </div>
-                        <div class="choose-content-item__bottom">
-                            <p class="choose-content-item__title">
-                                {{ item.name }}
-                            </p>
-                        </div>
-                    </li>
-                </ul>
+    <VSlideContainer>
+        <VContainer class="choose">
+            <h1 class="title large offset">{{ chosenData?.name }}</h1>
+            <div class="choose-main-photo">
+                <img :src="chosenData.imgUrl" alt="">
             </div>
-            <VButton variant="primary" @click="router.push('/make-photo')">Выбрать</VButton>
-        </div>
-    </VContainer>
+            <div class="choose-variants offset">
+                <VButton size="small" variant="special" class="special-btn" @click="toggleContrast">
+                    <template #icon>
+                        <IconContrast />
+                    </template>
+                    Режим для слабовидящих
+                </VButton>
+                <div class="choose-content">
+                    <ul class="choose-content-list">
+                        <li v-for="item in DATA" :class="[
+                            'choose-content-item',
+                            item.id === chosenData?.id && 'choose-content-item_active',
+                        ]" @click="onChoose(item)">
+                            <div class="choose-content-item__photo">
+                                <img :src="item.imgUrl" alt="costume-photo">
+                            </div>
+                            <div class="choose-content-item__bottom">
+                                <p class="choose-content-item__title">
+                                    {{ item.name }}
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <VButton variant="primary" @click="router.replace(Routes.MakePhoto)">Выбрать</VButton>
+            </div>
+        </VContainer>
+    </VSlideContainer>
 </template>
 
 
 
 <style scoped lang="scss">
 .choose {
-    position: relative;
+
 
     * {
         z-index: 1;

@@ -1,13 +1,15 @@
 <template>
-    <VContainer class="make-photo">
-        <div class="make-photo__instruction-message offset" v-if="shouldShow">
-            <p class="text">Встаньте так, чтобы лицо было чётко различимо</p>
-            <p class="text">Затем нажмите кнопку снизу</p>
-        </div>
-        <MakePhotoTimer class="position-center" />
-        <MakePhotoActions v-if="shouldShow" />
-    </VContainer>
-    <MakePhotoProcessing />
+    <VSlideContainer>
+        <VContainer class="make-photo">
+            <div class="make-photo__instruction-message offset" v-if="shouldShow">
+                <p class="text">Встаньте так, чтобы лицо было чётко различимо</p>
+                <p class="text">Затем нажмите кнопку снизу</p>
+            </div>
+            <MakePhotoTimer class="position-center" />
+            <MakePhotoActions v-if="shouldShow" />
+        </VContainer>
+        <MakePhotoProcessing />
+    </VSlideContainer>
 </template>
 
 <script setup lang="ts">
@@ -20,6 +22,7 @@ import { storeToRefs } from 'pinia';
 import { useDataStore } from '@/stores/counter';
 import MakePhotoTimer from './ui/MakePhotoTimer.vue';
 import MakePhotoProcessing from './ui/MakePhotoProcessing.vue';
+import VSlideContainer from '@/components/shared/container/VSlideContainer.vue';
 
 const store = storeToRefs(useDataStore())
 
@@ -38,8 +41,8 @@ const shouldShow = computed(() => store.stage.value === 'idle' && !store.process
         padding: 48px;
         border-radius: 40px;
         background-color: var(--color-light-beige);
-        
-        body.contrast &{
+
+        body.contrast & {
             background-color: var(--color-light-beige);
         }
     }

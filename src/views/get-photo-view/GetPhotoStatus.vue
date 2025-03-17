@@ -32,20 +32,23 @@
                 </VButton>
             </template>
         </PopupBody>
-        <!-- <PopupBody v-else="store.result === 'failure'">
-            <div>
-                <VButton variant="secondary" @click="onExit">
-                    Выйти
-                </VButton>
+        <PopupBody v-else>
+            <template #icon>
+                <IconConnection />
+            </template>
+            <p class="title popup">Нет соединения</p>
+            <p class="text">Попробуйте позже</p>
+            <template #actions>
                 <VButton variant="primary" @click="onAgain">
-                    Ещё раз
+                    Назад
                 </VButton>
-            </div>
-        </PopupBody> -->
+            </template>
+        </PopupBody>
     </Overlay>
 </template>
 
 <script setup lang="ts">
+import IconConnection from '@/components/icons/IconConnection.vue';
 import IconFailure from '@/components/icons/IconFailure.vue';
 import IconSuccess from '@/components/icons/IconSuccess.vue';
 import Loader from '@/components/shared/loader/Loader.vue';

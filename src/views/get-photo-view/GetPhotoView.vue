@@ -22,7 +22,7 @@
                     class="get-photo__email-form-btn">Отправить</VButton>
             </div>
         </div>
-        <VButton variant="primary" class="offset">
+        <VButton variant="primary" class="offset" @click="onBack">
             Назад
         </VButton>
         <div class="get-photo__keyboard" v-show="showKeyboard">
@@ -42,9 +42,11 @@ import Input from '@/components/shared/input/Input.vue';
 import Keyboard2 from '@/components/shared/keyboard/Keyboard2.vue';
 import { useGetPhotoStore } from '@/stores/getPhotoStore';
 import GetPhotoStatus from './GetPhotoStatus.vue';
+import { useRouter } from 'vue-router';
+
 const { sendEmailHandler } = useGetPhotoStore()
 const emailRef = ref<HTMLInputElement | null>(null)
-
+const router = useRouter()
 const showKeyboard = ref(false)
 const onChange = (input: string) => emailModel.value = input
 const emailModel = ref('')
@@ -73,6 +75,9 @@ const onKeyPress = (key: string) => {
 
 }
 
+const onBack = () => {
+    router.back();
+}
 const onFocus = () => showKeyboard.value = true
 const closeKeyboard = () => showKeyboard.value = false
 const sendButtonDisabled = computed(() => emailModel.value.length === 0)
@@ -86,8 +91,6 @@ const onEmailSend = () => {
 
 <style scoped lang="scss">
 .get-photo {
-    position: relative;
-
     &__scan-qr {
         display: flex;
         flex-direction: column;
