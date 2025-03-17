@@ -25,7 +25,7 @@ import IconLoader from '@/components/icons/IconLoader.vue';
     }
 
     100% {
-        transform: rotate(360deg);
+        transform: rotate(-360deg);
     }
 }
 </style>

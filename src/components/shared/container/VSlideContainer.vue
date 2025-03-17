@@ -9,7 +9,7 @@ import { Routes } from '@/router';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
-defineProps<{ zIndex: number }>()
+const props = defineProps<{ route: Routes }>()
 
 
 
@@ -21,10 +21,8 @@ const zIndexToRoute = {
     [Routes.GetPhoto]: 5,
 }
 
-const route = useRoute()
-
 const style = computed(() => ({
-    zIndex: zIndexToRoute[route.path]
+    zIndex: zIndexToRoute[props.route]
 }))
 
 </script>

@@ -12,7 +12,7 @@ const router = useRouter()
 </script>
 
 <template>
-  <VSlideContainer>
+  <VSlideContainer :route="Routes.Home">
     <VContainer class="home">
       <h1 class="title large offset">Примерь образ 19 века</h1>
       <div class="home__img">

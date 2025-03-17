@@ -1,36 +1,38 @@
 <template>
-    <VContainer class="get-photo">
-        <h1 class="title offset large">Получить фото</h1>
-        <div class="get-photo__scan-qr">
-            <p class="title popup">
-                Отсканируйте QR-код, <br />
-                чтобы получить снимок
-            </p>
-            <div class="get-photo__scan-qr-image">
-                <img :src="QRImgUrl" alt="">
+    <VSlideContainer :route="Routes.GetPhoto">
+        <VContainer class="get-photo">
+            <h1 class="title offset large">Получить фото</h1>
+            <div class="get-photo__scan-qr">
+                <p class="title popup">
+                    Отсканируйте QR-код, <br />
+                    чтобы получить снимок
+                </p>
+                <div class="get-photo__scan-qr-image">
+                    <img :src="QRImgUrl" alt="">
+                </div>
+                <VButton variant="special" size="small">
+                    Не сканируется код?
+                </VButton>
             </div>
-            <VButton variant="special" size="small">
-                Не сканируется код?
+            <div class="get-photo__email offset">
+                <h2 class="title popup">Или введите электронную почту</h2>
+                <div class="get-photo__email-form-row">
+                    <Input v-model="emailModel" @focus="onFocus" type="text" placeholder="Адрес электронной почты"
+                        ref="emailRef" />
+                    <VButton variant="primary" @click="onEmailSend" :disabled="sendButtonDisabled"
+                        class="get-photo__email-form-btn">Отправить</VButton>
+                </div>
+            </div>
+            <VButton variant="primary" class="offset" @click="onBack">
+                Назад
             </VButton>
-        </div>
-        <div class="get-photo__email offset">
-            <h2 class="title popup">Или введите электронную почту</h2>
-            <div class="get-photo__email-form-row">
-                <Input v-model="emailModel" @focus="onFocus" type="text" placeholder="Адрес электронной почты"
-                    ref="emailRef" />
-                <VButton variant="primary" @click="onEmailSend" :disabled="sendButtonDisabled"
-                    class="get-photo__email-form-btn">Отправить</VButton>
+            <div class="get-photo__keyboard" v-show="showKeyboard">
+                <Keyboard2 v-show="showKeyboard" @onChange="onChange" @onKeyPress="onKeyPress" :input="emailModel"
+                    @onClose="closeKeyboard" />
             </div>
-        </div>
-        <VButton variant="primary" class="offset" @click="onBack">
-            Назад
-        </VButton>
-        <div class="get-photo__keyboard" v-show="showKeyboard">
-            <Keyboard2 v-show="showKeyboard" @onChange="onChange" @onKeyPress="onKeyPress" :input="emailModel"
-                @onClose="closeKeyboard" />
-        </div>
-    </VContainer>
-    <GetPhotoStatus />
+        </VContainer>
+        <GetPhotoStatus />
+    </VSlideContainer>
 </template>
 
 <script setup lang="ts">
@@ -43,6 +45,8 @@ import Keyboard2 from '@/components/shared/keyboard/Keyboard2.vue';
 import { useGetPhotoStore } from '@/stores/getPhotoStore';
 import GetPhotoStatus from './GetPhotoStatus.vue';
 import { useRouter } from 'vue-router';
+import VSlideContainer from '@/components/shared/container/VSlideContainer.vue';
+import { Routes } from '@/router';
 
 const { sendEmailHandler } = useGetPhotoStore()
 const emailRef = ref<HTMLInputElement | null>(null)

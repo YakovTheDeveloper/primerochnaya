@@ -35,7 +35,7 @@ const router = useRouter()
 </script>
 
 <template>
-    <VSlideContainer>
+    <VSlideContainer :route="Routes.Choose">
         <VContainer class="choose">
             <h1 class="title large offset">{{ chosenData?.name }}</h1>
             <div class="choose-main-photo">

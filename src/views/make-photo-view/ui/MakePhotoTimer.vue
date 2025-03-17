@@ -1,10 +1,8 @@
 <template>
-    <div class="make-photo-timer-container">
+    <div class="make-photo-timer-container" v-if="shouldShow">
         <template v-for="count in 5">
-            <div :style="{ zIndex: count === countdown ? 10 : count }" class="make-photo-timer__item-wrapper">
-                <div class="text make-photo-timer" :style="getTimerStyleByElementIndex(6 - count) as any">
-                    {{ count }}
-                </div>
+            <div class="text make-photo-timer" :style="getTimerStyleByElemenCount(6 - count) as any">
+                {{ count }}
             </div>
         </template>
     </div>
@@ -29,14 +27,16 @@ const stopStyles: Record<string, Partial<CSSStyleDeclaration>> = {
         opacity: '1',
         width: '350px',
         fontSize: '150px',
-        boxShadow: '0px 0px 40px rgba(0, 0, 0, 0.15)'
+        boxShadow: '0px 0px 40px rgba(0, 0, 0, 0.01)',
+        zIndex: '3'
     },
     first: {
         transform: 'translateY(220px)',
         opacity: '0.6',
         width: '300px',
         fontSize: '128px',
-        boxShadow: '0px 0px 34.2857px rgba(0, 0, 0, 0.15)'
+        boxShadow: '0px 0px 34.2857px rgba(0, 0, 0, 0.01)',
+        zIndex: '2'
 
     },
     second: {
@@ -44,7 +44,8 @@ const stopStyles: Record<string, Partial<CSSStyleDeclaration>> = {
         opacity: '0.2',
         width: '250px',
         fontSize: '107px',
-        boxShadow: '0px 0px 28.5714px rgba(0, 0, 0, 0.15)'
+        boxShadow: '0px 0px 28.5714px rgba(0, 0, 0, 0.01)',
+        zIndex: '1'
 
     },
     out: {
@@ -54,7 +55,7 @@ const stopStyles: Record<string, Partial<CSSStyleDeclaration>> = {
     }
 }
 
-const translateAnimationByStepAndCountdown: Record<number, Record<number, Partial<CSSStyleDeclaration>>> = {
+const animationByStepAndCountdown: Record<number, Record<number, Partial<CSSStyleDeclaration>>> = {
     1: {
         5: stopStyles.init,
         4: stopStyles.first,
@@ -92,9 +93,8 @@ const translateAnimationByStepAndCountdown: Record<number, Record<number, Partia
     }
 }
 
-const getTimerStyleByElementIndex = (index: number) => {
-    return translateAnimationByStepAndCountdown[index][countdown.value]
-    return translateAnimationByStepAndCountdown[index][2]
+const getTimerStyleByElemenCount = (count: number) => {
+    return animationByStepAndCountdown[count][countdown.value]
 };
 
 
@@ -111,21 +111,20 @@ const startCountdown = () => {
 
 const shouldShow = computed(() => countdown.value > 0 && store.stage.value === 'countdown')
 
-// watch(countdown, (newCountdown) => {
-//     if (newCountdown === 0) sendUserPhotoHandler()
-//         .then(result => {
-//             if (!result) return
-//             router.push(Routes.PhotoResult)
-//             resetStage()
-//         })
-// })
+watch(countdown, (newCountdown) => {
+    if (newCountdown === 0) sendUserPhotoHandler()
+        .then(result => {
+            if (!result) return
+            router.push(Routes.PhotoResult)
+            resetStage()
+        })
+})
 
 watch(() => store.stage.value, (newStage) => {
-    console.log(`output->newStage`, newStage)
     if (newStage === 'countdown') startCountdown()
 })
 
-watchEffect(() => startCountdown())
+// watchEffect(() => startCountdown())
 
 </script>
 
@@ -135,7 +134,7 @@ watchEffect(() => startCountdown())
     margin: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -154,11 +153,11 @@ watchEffect(() => startCountdown())
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out, width 0.5s ease-in-out;
     flex-grow: 0;
     flex-shrink: 0;
 
-    &__item-wrapper {
+    /* &__item-wrapper {
         position: absolute;
         top: 50%;
         right: 50%;
@@ -166,7 +165,7 @@ watchEffect(() => startCountdown())
         display: flex;
         align-items: center;
         justify-content: center;
-    }
+    } */
 
 }
 </style>

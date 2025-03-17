@@ -1,30 +1,32 @@
 <template>
-    <VContainer class="photo-result">
-        <h1 class="title large offset">Ваш результат</h1>
-        <div class="photo-result__image">
-            <img :src="imgUrl" alt="">
-        </div>
-        <div class="photo-result__actions offset">
-            <VButton variant="primary" @click="onHome">
-                <template #icon>
-                    <IconHome />
-                </template>
-                На главную
-            </VButton>
-            <VButton variant="primary" @click="onAgain">
-                <template #icon>
-                    <IconAgain />
-                </template>
-                Ещё раз
-            </VButton>
-            <VButton variant="primary" @click="onDownload">
-                <template #icon>
-                    <IconDownload />
-                </template>
-                Скачать
-            </VButton>
-        </div>
-    </VContainer>
+    <VSlideContainer :route="Routes.PhotoResult">
+        <VContainer class="photo-result">
+            <h1 class="title large offset">Ваш результат</h1>
+            <div class="photo-result__image">
+                <img :src="imgUrl" alt="">
+            </div>
+            <div class="photo-result__actions offset">
+                <VButton variant="primary" @click="onHome">
+                    <template #icon>
+                        <IconHome />
+                    </template>
+                    На главную
+                </VButton>
+                <VButton variant="primary" @click="onAgain">
+                    <template #icon>
+                        <IconAgain />
+                    </template>
+                    Ещё раз
+                </VButton>
+                <VButton variant="primary" @click="onDownload">
+                    <template #icon>
+                        <IconDownload />
+                    </template>
+                    Скачать
+                </VButton>
+            </div>
+        </VContainer>
+    </VSlideContainer>
 </template>
 
 <script setup lang="ts">
@@ -32,6 +34,7 @@ import IconAgain from '@/components/icons/IconAgain.vue';
 import IconDownload from '@/components/icons/IconDownload.vue';
 import IconHome from '@/components/icons/IconHome.vue';
 import VContainer from '@/components/shared/container/VContainer.vue';
+import VSlideContainer from '@/components/shared/container/VSlideContainer.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
 import { Routes } from '@/router';
 import { useDataStore } from '@/stores/counter';

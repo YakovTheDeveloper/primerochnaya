@@ -20,6 +20,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
+    z-index: 10;
 
     width: calc(100% - 200px);
     height: calc(100% - 200px);

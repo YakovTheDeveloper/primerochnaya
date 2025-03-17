@@ -74,11 +74,11 @@ watch(history, (newHistory) => {
   transform: translateX(0);
 }
 
-/* .slide-leave-from{
-  opacity: 1;
+.slide-leave-from{
+  transform: translateX(0);
 }
 
 .slide-leave-to{
-  opacity: 0;
-} */
+  transform: translateX(-100%);
+}
 </style>
