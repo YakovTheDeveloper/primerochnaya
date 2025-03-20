@@ -26,6 +26,7 @@
     flex-direction: column;
     gap: 24px;
 
+    transition: all 0.5s ease-in-out;
 
     &_width {
         width: 1326px;

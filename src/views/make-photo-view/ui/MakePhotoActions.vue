@@ -17,14 +17,14 @@ import IconBack from '@/components/icons/IconBack.vue';
 import IconCamera from '@/components/icons/IconCamera.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
 import { Routes } from '@/router';
-import { useDataStore } from '@/stores/counter';
+import { useMakePhotoStore } from '@/stores/makePhotoStore';
 import { storeToRefs } from 'pinia';
 import { watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
-const { setStage } = useDataStore()
-const store = storeToRefs(useDataStore())
+const { setStage } = useMakePhotoStore()
+const store = storeToRefs(useMakePhotoStore())
 
 const onBack = () => {
     router.replace(Routes.Choose)

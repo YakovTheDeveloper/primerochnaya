@@ -36,13 +36,13 @@ import Overlay from '@/components/shared/overlay/Overlay.vue';
 import PopupBody from '@/components/shared/popup/popupBody.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
 import { Routes } from '@/router';
-import { useDataStore } from '@/stores/counter';
+import { useMakePhotoStore } from '@/stores/makePhotoStore';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 
-const store = storeToRefs(useDataStore())
-const { resetStore } = useDataStore()
+const store = storeToRefs(useMakePhotoStore())
+const { resetStore } = useMakePhotoStore()
 const showLoadingMessage = computed(() => {
     return store.stage.value === 'processing'
 })

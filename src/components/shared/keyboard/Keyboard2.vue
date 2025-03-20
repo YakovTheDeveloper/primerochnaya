@@ -37,19 +37,19 @@ const layouts: KeyboardLayoutObject = {
       "q w e r t y u i o p {bksp}",
       "a s d f g h j k l",
       "{shift} z x c v b n m {enter}",
-      "{numbers} , space . {lang}"
+      "{numbers} @ space . {lang}"
     ],
     shift: [
       "Q W E R T Y U I O P {bksp}",
       "A S D F G H J K L",
       "{shift} Z X C V B N M {enter}",
-      "{numbers} , space . {lang}"
+      "{numbers} @ space . {lang}"
     ],
     numbers: [
       "1 2 3 4 5 6 7 8 9 0 {bksp}",
       "@ # ₽ _ & - + ( ) /",
       "{shift} * \" ' : ; ! ? {enter}",
-      "{letters} , space . {lang}"
+      "{letters} @ space . {lang}"
     ]
   },
   russian: {
@@ -57,19 +57,19 @@ const layouts: KeyboardLayoutObject = {
       "й ц у к е н г ш щ з {bksp}",
       "ф ы в а п р о л д",
       "{shift} я ч с м и т ь {enter}",
-      "{numbers} , space . {lang}"
+      "{numbers} @ space . {lang}"
     ],
     shift: [
       "Й Ц У К Е Н Г Ш Щ З {bksp}",
       "Ф Ы В А П Р О Л Д",
       "{shift} Я Ч С М И Т Ь {enter}",
-      "{numbers} , space . {lang}"
+      "{numbers} @ space . {lang}"
     ],
     numbers: [
       "1 2 3 4 5 6 7 8 9 0 {bksp}",
       "@ # ₽ _ & - + ( ) /",
       "{shift} * \" ' : ; ! ? {enter}",
-      "{letters} , space . {lang}"
+      "{letters} @ space . {lang}"
     ]
   }
 };

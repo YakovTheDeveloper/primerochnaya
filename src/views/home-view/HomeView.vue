@@ -7,7 +7,13 @@ import VButton from '@/components/shared/v-button/VButton.vue';
 import VContainer from '@/components/shared/container/VContainer.vue';
 import { Routes } from '@/router';
 import VSlideContainer from '@/components/shared/container/VSlideContainer.vue';
+import { useCostumeStore } from '@/stores/costumeStore';
+import { storeToRefs } from 'pinia';
+import Loader from '@/components/shared/loader/Loader.vue';
+import PopupBody from '@/components/shared/popup/popupBody.vue';
 const router = useRouter()
+
+const { costumes, loading } = storeToRefs(useCostumeStore())
 
 </script>
 
@@ -18,12 +24,19 @@ const router = useRouter()
       <div class="home__img">
         <img :src="HomePhoto" alt="">
       </div>
-      <VButton variant="start" class="offset" @click="router.push(Routes.Choose)">
-        <template #icon>
-          <img :src="TouchIcon" />
-        </template>
-        Нажмите, чтобы начать
-      </VButton>
+      <template v-if="costumes">
+        <VButton variant="start" class="offset" @click="router.push(Routes.Choose)">
+          <template #icon>
+            <img :src="TouchIcon" />
+          </template>
+          Нажмите, чтобы начать
+        </VButton>
+      </template>
+      <template v-else>
+        <PopupBody class="home__loader">
+          <Loader />
+        </PopupBody>
+      </template>
     </VContainer>
   </VSlideContainer>
 </template>
@@ -46,6 +59,11 @@ const router = useRouter()
     img {
       width: 100%;
     }
+  }
+
+  &__loader {
+    position: relative;
+    bottom: 40px;
   }
 }
 </style>

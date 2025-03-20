@@ -1,9 +1,9 @@
 <template>
-    <Overlay v-show="shouldShowModal">
-        <PopupBody v-if="store.isLoading.value">
+    <Overlay v-if="shouldShowModal">
+        <PopupBody v-if="store.loading.value">
             <Loader />
         </PopupBody>
-        <PopupBody v-else-if="store.result.value === 'success'">
+        <PopupBody v-else-if="showSuccessMessage">
             <template #icon>
                 <IconSuccess />
             </template>
@@ -17,7 +17,7 @@
                 </VButton>
             </template>
         </PopupBody>
-        <PopupBody v-else-if="store.result.value === 'failure'">
+        <PopupBody v-else-if="showFailMessage">
             <template #icon>
                 <IconFailure />
             </template>
@@ -56,20 +56,25 @@ import Overlay from '@/components/shared/overlay/Overlay.vue';
 import PopupBody from '@/components/shared/popup/popupBody.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
 import { Routes } from '@/router';
+import { useGetFileStore } from '@/stores/getFileStore';
 import { useGetPhotoStore } from '@/stores/getPhotoStore';
 import { storeToRefs } from 'pinia';
 import { computed, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
+
 const router = useRouter()
-const store = storeToRefs(useGetPhotoStore())
-const { reset } = useGetPhotoStore()
-const shouldShowModal = computed(() => store.isLoading.value || store.result.value != null)
+const store = storeToRefs(useGetFileStore())
+const { reset } = useGetFileStore()
+const shouldShowModal = computed(() => store.error.value || store.loading.value || !!store.data.value)
 
 const onAgain = () => reset()
+
 const onExit = () => {
     router.push(Routes.Home)
-    reset()
 }
+
+const showFailMessage = computed(() => store.error.value)
+const showSuccessMessage = computed(() => !store.error.value && store.data)
 
 
 

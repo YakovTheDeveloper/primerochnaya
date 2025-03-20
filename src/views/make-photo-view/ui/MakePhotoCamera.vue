@@ -1,6 +1,7 @@
 <template>
     <div class="make-photo-camera">
         <video ref="video" autoplay></video>
+        <canvas ref="canvas" style="display: none;"></canvas>
     </div>
 </template>
 
@@ -8,6 +9,7 @@
 import { onMounted, ref } from 'vue';
 
 const video = ref<HTMLVideoElement | null>(null);
+const canvas = ref<HTMLCanvasElement | null>(null);
 
 onMounted(() => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -22,6 +24,19 @@ onMounted(() => {
             });
     }
 });
+
+const capturePhoto = () => {
+    if (video.value && canvas.value) {
+        const context = canvas.value.getContext("2d");
+        canvas.value.width = video.value.videoWidth;
+        canvas.value.height = video.value.videoHeight;
+        context?.drawImage(video.value, 0, 0, canvas.value.width, canvas.value.height);
+        return canvas.value.toDataURL("image/jpeg");
+    }
+}
+
+defineExpose({ capturePhoto })
+
 </script>
 
 <style scoped lang="scss">

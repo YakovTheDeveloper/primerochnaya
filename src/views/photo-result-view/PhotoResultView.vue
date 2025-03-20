@@ -37,13 +37,13 @@ import VContainer from '@/components/shared/container/VContainer.vue';
 import VSlideContainer from '@/components/shared/container/VSlideContainer.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
 import { Routes } from '@/router';
-import { useDataStore } from '@/stores/counter';
+import { useMakePhotoStore } from '@/stores/makePhotoStore';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 
-const store = storeToRefs(useDataStore())
-const { resetStore } = useDataStore()
+const store = storeToRefs(useMakePhotoStore())
+const { resetStore } = useMakePhotoStore()
 const router = useRouter()
 
 const imgUrl = computed(() => {

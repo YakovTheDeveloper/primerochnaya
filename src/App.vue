@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import VButton from './components/shared/v-button/VButton.vue';
-import { useDataStore } from './stores/counter';
+import { useMakePhotoStore } from './stores/makePhotoStore';
 import { onMounted, ref, watch } from 'vue';
 import VSlideContainer from './components/shared/container/VSlideContainer.vue';
-const { test } = useDataStore()
+import { useCostumeStore } from './stores/costumeStore';
+
+const { test } = useMakePhotoStore()
 const route = useRoute();
 const router = useRouter();
 
@@ -24,7 +26,15 @@ const history = ref<string[]>([]);
 //   }
 // });
 
+const { getCostumesHandler } = useCostumeStore()
+
 onMounted(() => {
+
+  getCostumesHandler()
+
+  console.log(`output->"1231231231231"`, "1231231231231")
+
+
   const savedHistory = sessionStorage.getItem('routeHistory');
   if (savedHistory) {
     history.value = JSON.parse(savedHistory);
@@ -74,11 +84,11 @@ watch(history, (newHistory) => {
   transform: translateX(0);
 }
 
-.slide-leave-from{
+.slide-leave-from {
   transform: translateX(0);
 }
 
-.slide-leave-to{
+.slide-leave-to {
   transform: translateX(-100%);
 }
 </style>

@@ -24,9 +24,15 @@ defineExpose({
 
     outline-color: var(--color-beige);
 
+    transition: background-color 0.5s ease-in-out;
+
     &:focus {
         border-color: var(--color-beige);
         background-color: var(--color-light-beige);
+
+        &::placeholder{
+            color: transparent;
+        }
     }
 
     &::placeholder {
