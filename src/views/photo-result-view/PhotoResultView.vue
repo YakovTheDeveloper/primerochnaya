@@ -38,18 +38,19 @@ import VSlideContainer from '@/components/shared/container/VSlideContainer.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
 import { Routes } from '@/router';
 import { useMakePhotoStore } from '@/stores/makePhotoStore';
+import { usePhotoResultStore } from '@/stores/photoResultStore';
+import { getServerImageUrl } from '@/utils/getServerImageUrl';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 
-const store = storeToRefs(useMakePhotoStore())
 const { resetStore } = useMakePhotoStore()
 const router = useRouter()
+const photoStore = storeToRefs(usePhotoResultStore())
 
 const imgUrl = computed(() => {
-    console.log(`output->`, store.processingResult.value)
-    if (store.processingResult.value?.status === 'success') {
-        return store.processingResult.value?.data.imgUrl
+    if (photoStore.photoUrl.value) {
+        return getServerImageUrl(photoStore.photoUrl.value)
     }
     return ''
 })
@@ -78,9 +79,17 @@ const onDownload = () => {
     }
 
     &__image {
+        height: 2894px;
+        width: 1664px;
         margin: 0 auto;
         padding: 40px;
         background-color: var(--color-white);
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     }
 }
 </style>

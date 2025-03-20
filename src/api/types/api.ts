@@ -15,7 +15,7 @@ export type GetCostumesResponse = ApiResponse<Costume[]>
 export type SendPhotoResponse = ApiResponse<{
     "id": number,
     "code": string,
-    "image": string
+    "message": 'success'
 }>
 
 export type SendPhotoPayload = {
@@ -34,6 +34,11 @@ export type GenerateQrPayload = {
 
 export type EmailResponse = ApiResponse<DownloadDataResponse>
 export type TelegramResponse = ApiResponse<DownloadDataResponse>
+export type ImageResultResponse = ApiResponse<{
+    "id": number,
+    "code": string,
+    "image": string
+}>
 
 type IdList = number[]
 

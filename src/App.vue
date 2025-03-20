@@ -50,9 +50,9 @@ watch(history, (newHistory) => {
 <template>
   <RouterView v-slot="{ Component, route }">
     <transition name="slide">
-      <keep-alive>
+    
         <component :is="Component" :key="route.path" />
-      </keep-alive>
+     
     </transition>
   </RouterView>
   <!-- <div class="test">

@@ -1,5 +1,5 @@
 import MOCK_RESULT_IMG from '@/assets/img/photo/result.png';
-import type { EmailResponse, GetQrResponse, GenerateQrPayload, GetCostumesResponse, SendEmailPayload, SendPhotoPayload, SendPhotoResponse } from './types/api';
+import type { EmailResponse, GetQrResponse, GenerateQrPayload, GetCostumesResponse, SendEmailPayload, SendPhotoPayload, SendPhotoResponse, ImageResultResponse } from './types/api';
 import apiClient from './axios';
 import { base64ToBlob } from '@/utils/base64toBlob';
 import axios from 'axios';
@@ -21,6 +21,10 @@ export async function fetchSendUserPhoto(payload: SendPhotoPayload): Promise<Sen
 
 export async function fetchGetCostumes(): Promise<GetCostumesResponse> {
     return apiClient.get('/costumes', {})
+}
+
+export async function fetchGetImageResults(id: number): Promise<ImageResultResponse> {
+    return apiClient.get(`/image_results/${id}`)
 }
 
 export function fetchSendEmail(payload: SendEmailPayload): Promise<EmailResponse> {

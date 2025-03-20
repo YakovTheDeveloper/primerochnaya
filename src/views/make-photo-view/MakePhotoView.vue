@@ -47,7 +47,6 @@ watch(() => store.stage.value, async (newStage) => {
     await timerRef.value.startCountdown()
     await flashRef.value.makeFlash()
     const photo = cameraRef.value.capturePhoto()
-    console.log(`output->photo`, photo)
     const result = await sendUserPhotoHandler(photo)
     result && router.push(Routes.PhotoResult)
 

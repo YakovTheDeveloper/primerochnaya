@@ -57,7 +57,6 @@ import PopupBody from '@/components/shared/popup/popupBody.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
 import { Routes } from '@/router';
 import { useGetFileStore } from '@/stores/getFileStore';
-import { useGetPhotoStore } from '@/stores/getPhotoStore';
 import { storeToRefs } from 'pinia';
 import { computed, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';

@@ -5,7 +5,7 @@
             чтобы получить снимок
         </p>
         <div class="get-photo-scan-qr__image">
-            <Loader v-if="store.loading.value" class="get-photo-scan-qr__image-loader"/>
+            <Loader v-if="store.loading.value" class="get-photo-scan-qr__image-loader" />
             <img v-else :src="qrSvgUrl" alt="qr">
         </div>
         <VButton variant="special" size="small" :class="notScanClasses" @click="toggleNotScanDescription">
@@ -50,9 +50,7 @@ const notScanText = computed(() => showNotScanDescription.value
 
 
 
-onMounted(() => generateQrHandler({
-    imageResults: [1]
-}))
+onMounted(() => generateQrHandler())
 
 watch(() => store.data.value, (svg) => {
     if (!svg) return
@@ -75,11 +73,11 @@ watch(() => store.data.value, (svg) => {
         height: 1000px;
         margin: 40px auto 24px;
 
-        &-loader{
+        &-loader {
             margin: auto;
         }
 
-        img{
+        img {
             width: 100%;
             height: 100%;
         }

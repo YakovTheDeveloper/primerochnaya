@@ -6,10 +6,14 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { Routes } from '@/router';
+import { onMounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 const video = ref<HTMLVideoElement | null>(null);
 const canvas = ref<HTMLCanvasElement | null>(null);
+
+const route = useRoute()
 
 onMounted(() => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {

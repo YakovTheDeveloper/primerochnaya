@@ -58,10 +58,7 @@ const closeKeyboard = () => showKeyboard.value = false
 const sendButtonDisabled = computed(() => emailModel.value.length === 0)
 
 const onEmailSend = () => {
-    sendToEmailHandler({
-        email: emailModel.value,
-        imageResults: [1]
-    })
+    sendToEmailHandler(emailModel.value)
     showKeyboard.value = false
 }
 
