@@ -5,11 +5,12 @@ import { base64ToBlob } from '@/utils/base64toBlob';
 import axios from 'axios';
 
 export async function fetchSendUserPhoto(payload: SendPhotoPayload): Promise<SendPhotoResponse> {
-    const { costumeId, userImage } = payload
+    const { costumeId, userImage, backgroundId } = payload
     const mimeType = "image/jpeg";
     const blob = base64ToBlob(userImage, mimeType);
     const formData = new FormData();
     formData.append("costumeId", costumeId.toString());
+    formData.append("backgroundId", backgroundId.toString());
     formData.append("userImage", blob, "123.jpg");
 
     return apiClient.post('/image_results', formData, {

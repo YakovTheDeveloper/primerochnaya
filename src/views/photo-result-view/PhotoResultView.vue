@@ -83,7 +83,6 @@ const onDownload = () => {
         width: 1664px;
         margin: 0 auto;
         padding: 40px;
-        background-color: var(--color-white);
 
         img{
             width: 100%;

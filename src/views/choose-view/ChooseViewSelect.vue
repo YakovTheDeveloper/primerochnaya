@@ -115,7 +115,7 @@ const props = defineProps<{
         &__title {
             font-size: 32px;
             font-weight: 600;
-            padding: 40px;
+            padding: 40px 40px;
             color: var(--color-white);
             text-align: center;
             z-index: 1;

@@ -12,7 +12,7 @@ export const useMakePhotoStore = defineStore('make-photo-store', () => {
   const router = useRouter()
   const costumeStore = storeToRefs(useCostumeStore())
 
-  const { setPhotoUrl, setPhotoId } = usePhotoResultStore()
+  const { setPhotoUrl, setPhotoId, setPhotoCode } = usePhotoResultStore()
 
   const stage = ref<Stage>('idle')
   const processingResult = ref<StatusData>(null)
@@ -31,9 +31,12 @@ export const useMakePhotoStore = defineStore('make-photo-store', () => {
   async function sendUserPhotoHandler(userImage: string) {
     stage.value = 'processing'
 
+    const id = costumeStore.currentCostumeId.value
+
     const result = await fetchSendUserPhoto({
-      costumeId: costumeStore.currentCostumeId.value,
-      userImage
+      costumeId: id,
+      userImage,
+      backgroundId: id
     })
 
     if (result.isError) {
@@ -53,6 +56,7 @@ export const useMakePhotoStore = defineStore('make-photo-store', () => {
     processingResult.value = { status: 'success' }
     setPhotoUrl(getImageResult.data.image)
     setPhotoId(getImageResult.data.id)
+    setPhotoCode(getImageResult.data.code)
 
     resetStage()
     return true

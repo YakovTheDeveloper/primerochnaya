@@ -1,10 +1,12 @@
 <template>
     <div class="slide-container" :style="style">
         <slot></slot>
+        <WaitingMode v-if="props.route !== Routes.Home" class="slide-container__popup_waiting-mode" />
     </div>
 </template>
 
 <script setup lang="ts">
+import WaitingMode from '@/components/popups/waiting-mode/WaitingMode.vue';
 import { Routes } from '@/router';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
@@ -39,5 +41,11 @@ const style = computed(() => ({
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &__popup {
+        &_waiting-mode {
+            z-index: 2;
+        }
+    }
 }
 </style>

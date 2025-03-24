@@ -12,6 +12,7 @@ import ChooseViewSelect from './ChooseViewSelect.vue';
 import { storeToRefs } from 'pinia';
 import { useCostumeStore } from '@/stores/costumeStore';
 import { getServerImageUrl } from '@/utils/getServerImageUrl';
+import WaitingMode from '@/components/popups/waiting-mode/WaitingMode.vue';
 
 const store = storeToRefs(useCostumeStore())
 const { onChoose } = useCostumeStore()

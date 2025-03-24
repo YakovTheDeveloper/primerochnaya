@@ -21,6 +21,7 @@ export type SendPhotoResponse = ApiResponse<{
 export type SendPhotoPayload = {
     userImage: string
     costumeId: number
+    backgroundId: number
 }
 
 export type SendEmailPayload = {

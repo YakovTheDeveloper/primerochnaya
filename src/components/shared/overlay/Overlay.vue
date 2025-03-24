@@ -13,8 +13,8 @@
     background-color: rgba(0, 0, 0, 0.4);
     bottom: 0;
     right: 0;
-    left: 100px;
-    top: 100px;
+    left: 0;
+    top: 0;
     height: 100%;
     display: flex;
     align-items: center;
@@ -22,7 +22,7 @@
     position: absolute;
     z-index: 10;
 
-    width: calc(100% - 200px);
-    height: calc(100% - 200px);
+    width: 100%;
+    height: 100%;
 }
 </style>

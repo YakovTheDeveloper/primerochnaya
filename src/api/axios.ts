@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// const testingProxy = 'https://cors-anywhere.herokuapp.com/'
+
 const apiClient = axios.create({
     baseURL: `${import.meta.env.VITE_API_URL}/api/`
 });

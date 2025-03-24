@@ -23,11 +23,13 @@ import ImgQR from '@/assets/img/mock/qr.png'
 import Loader from '@/components/shared/loader/Loader.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
 import { useGetQrStore } from '@/stores/getFileStore';
+import { usePhotoResultStore } from '@/stores/photoResultStore';
 import { storeToRefs } from 'pinia';
 import { computed, onMounted, ref, watch } from 'vue';
 
 const store = storeToRefs(useGetQrStore())
 const { generateQrHandler } = useGetQrStore()
+const photoResultStore = storeToRefs(usePhotoResultStore())
 
 const qrSvgUrl = ref("");
 
@@ -42,7 +44,7 @@ const notScanClasses = computed(() => ([
 
 const notScanText = computed(() => showNotScanDescription.value
     ? `
-Наберите в поиске @имябота, затем отправьте сообщение "0000" 
+Наберите в поиске @NKM_PhotoSender_bot, затем отправьте сообщение "${photoResultStore.photoCode.value}" 
 вам ответит бот и пришлёт вашу фотографию`
     : `
 Не сканируется код?

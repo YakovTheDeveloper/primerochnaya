@@ -2,44 +2,54 @@
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import VButton from './components/shared/v-button/VButton.vue';
 import { useMakePhotoStore } from './stores/makePhotoStore';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 import VSlideContainer from './components/shared/container/VSlideContainer.vue';
 import { useCostumeStore } from './stores/costumeStore';
+import { useWaitingModeStore } from './stores/waitingModeStore';
 
-const { test } = useMakePhotoStore()
-const route = useRoute();
-const router = useRouter();
 
-const direction = ref("slide");
+const { createWaitingTimeInterval, resetTime, removeWaitingTimeInterval } = useWaitingModeStore();
 const history = ref<string[]>([]);
 
-// watch(route, (to, from) => {
-//   const toIndex = history.value.indexOf(to.fullPath);
-//   const fromIndex = history.value.indexOf(from.fullPath);
 
-//   if (toIndex === -1) {
-//     history.value.push(to.fullPath);
-//     direction.value = "slide-left"; // Forward navigation
-//   } else {
-//     history.value.splice(toIndex + 1);
-//     direction.value = "slide-right"; // Back navigation
-//   }
-// });
+const createTerminalControlPanel = () => {
+  let script = document.createElement('script');
+
+  script.src = '/src/utils/exiter.js?v=' + new Date().getTime()
+
+  script.onload = () => {
+    console.log('exiter.js has been loaded');
+  }
+
+  document.head.appendChild(script);
+}
 
 const { getCostumesHandler } = useCostumeStore()
 
+onUnmounted(() => removeWaitingTimeInterval())
+
 onMounted(() => {
+  createWaitingTimeInterval()
+  getCostumesHandler();
+  createTerminalControlPanel()
 
-  getCostumesHandler()
+  document.querySelector('body')?.addEventListener('click', () => {
+    resetTime()
+  })
 
-  console.log(`output->"1231231231231"`, "1231231231231")
+
 
 
   const savedHistory = sessionStorage.getItem('routeHistory');
   if (savedHistory) {
     history.value = JSON.parse(savedHistory);
   }
+
+  // Lock vertical scroll
+  document.body.style.overflowY = 'hidden';
 });
+
+
 
 watch(history, (newHistory) => {
   sessionStorage.setItem('routeHistory', JSON.stringify(newHistory));
@@ -50,9 +60,9 @@ watch(history, (newHistory) => {
 <template>
   <RouterView v-slot="{ Component, route }">
     <transition name="slide">
-    
-        <component :is="Component" :key="route.path" />
-     
+
+      <component :is="Component" :key="route.path" />
+
     </transition>
   </RouterView>
   <!-- <div class="test">
