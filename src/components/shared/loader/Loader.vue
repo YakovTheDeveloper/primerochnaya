@@ -6,7 +6,12 @@
 
 <script setup lang="ts">
 import IconLoader from '@/components/icons/IconLoader.vue';
+import { useWaitingModeStore } from '@/stores/waitingModeStore';
+import { onMounted, onUnmounted } from 'vue';
+const { removeWaitingTimeInterval, createWaitingTimeInterval } = useWaitingModeStore()
 
+onMounted(() => removeWaitingTimeInterval())
+onUnmounted(() => createWaitingTimeInterval())
 
 </script>
 

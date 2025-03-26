@@ -42,7 +42,7 @@ watchEffect(() => {
 
 <style lang="scss" scoped>
 .make-photo-actions {
-    z-index: 1;
+    z-index: var(--z-index-make-photo-actions);
     padding: 350px 80px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

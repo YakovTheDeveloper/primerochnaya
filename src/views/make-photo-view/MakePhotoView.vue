@@ -8,6 +8,7 @@
             </div>
             <MakePhotoTimer class="position-center" ref="timerRef" />
             <MakePhotoActions v-if="shouldShow" />
+            <MakePhotoBackground/>
         </VContainer>
         <MakePhotoProcessing />
         <MakePhotoFlash ref="flashRef" />
@@ -29,12 +30,15 @@ import MakePhotoCamera from './ui/MakePhotoCamera.vue';
 import { Routes } from '@/router';
 import MakePhotoFlash from './ui/MakePhotoFlash.vue';
 import { useCostumeStore } from '@/stores/costumeStore';
+import { useWaitingModeStore } from '@/stores/waitingModeStore';
+import MakePhotoBackground from './ui/MakePhotoBackground.vue';
 
 const router = useRouter()
 const timerRef = ref()
 const flashRef = ref()
 const cameraRef = ref()
 const store = storeToRefs(useMakePhotoStore())
+const waitingMode = useWaitingModeStore()
 const costumeStore = storeToRefs(useCostumeStore())
 const { sendUserPhotoHandler } = useMakePhotoStore()
 
@@ -42,15 +46,13 @@ const shouldShow = computed(() => store.stage.value === 'idle' && !store.process
 
 
 watch(() => store.stage.value, async (newStage) => {
+    waitingMode.resetTime()
     if (newStage !== 'countdown') return
-
     await timerRef.value.startCountdown()
     await flashRef.value.makeFlash()
     const photo = cameraRef.value.capturePhoto()
-    console.log(`output->photo`,photo)
     const result = await sendUserPhotoHandler(photo)
     result && router.push(Routes.PhotoResult)
-
 })
 
 </script>
@@ -66,7 +68,7 @@ watch(() => store.stage.value, async (newStage) => {
         padding: 48px;
         border-radius: 40px;
         background-color: var(--color-light-beige);
-        z-index: 1;
+        z-index: var(--z-index-make-photo-actions);
 
         body.contrast & {
             background-color: var(--color-light-beige);

@@ -11,11 +11,15 @@ export const useMakePhotoStore = defineStore('make-photo-store', () => {
 
   const router = useRouter()
   const costumeStore = storeToRefs(useCostumeStore())
-
+  const newlyCreatedPhotoUrl = ref('')
   const { setPhotoUrl, setPhotoId, setPhotoCode } = usePhotoResultStore()
 
   const stage = ref<Stage>('idle')
   const processingResult = ref<StatusData>(null)
+
+  const setNewlyCreatedPhotoUrl = (url: string) => {
+    newlyCreatedPhotoUrl.value = url
+  }
 
   const setStage = (value: Stage) => stage.value = value
 
@@ -24,6 +28,7 @@ export const useMakePhotoStore = defineStore('make-photo-store', () => {
   const resetStore = () => {
     stage.value = 'idle'
     processingResult.value = null
+    newlyCreatedPhotoUrl.value = ''
   }
 
   const resetStage = () => stage.value = 'idle'
@@ -62,7 +67,7 @@ export const useMakePhotoStore = defineStore('make-photo-store', () => {
     return true
   }
 
-  return { stage, processingResult, sendUserPhotoHandler, makePhoto, setStage, resetStore, resetStage }
+  return { stage, newlyCreatedPhotoUrl, processingResult, sendUserPhotoHandler, makePhoto, setStage, setNewlyCreatedPhotoUrl, resetStore, resetStage }
 })
 
 

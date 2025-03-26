@@ -11,7 +11,9 @@ import { useMakePhotoStore } from '@/stores/makePhotoStore';
 import { storeToRefs } from 'pinia';
 import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+
 const store = storeToRefs(useMakePhotoStore())
+const { setNewlyCreatedPhotoUrl } = useMakePhotoStore()
 const video = ref<HTMLVideoElement | null>(null);
 const canvas = ref<HTMLCanvasElement | null>(null);
 
@@ -23,7 +25,12 @@ const route = useRoute()
 
 onMounted(() => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true })
+        navigator.mediaDevices.getUserMedia({
+            video: {
+                width: { ideal: 2560 },
+                height: { ideal: 1440 }
+            }
+        })
             .then(stream => {
                 if (video.value) {
                     video.value.srcObject = stream;
@@ -35,6 +42,7 @@ onMounted(() => {
     }
 });
 
+
 const capturePhoto = () => {
     if (video.value && canvas.value) {
         const context = canvas.value.getContext("2d");
@@ -44,7 +52,7 @@ const capturePhoto = () => {
 
         // Convert canvas to data URL
         const imageData = canvas.value.toDataURL("image/jpeg");
-
+        setNewlyCreatedPhotoUrl(imageData)
         // Create a download link
         // const link = document.createElement("a");
         // link.href = imageData;
@@ -79,11 +87,16 @@ defineExpose({ capturePhoto })
 
     video {
         // height: 100%;
-        width: 2900px;  
+        // aspect-ratio: (1.33333333333);
+        // aspect-ratio: (1.77777777778);
+        
+        // width: 2592px;
+        // height: 1944px;
         height: 2160px;
-        margin: 0 auto;
         object-fit: contain;
         transform: scale(-1) rotate(90deg);
+
+        margin: 0 auto;
 
     }
 }

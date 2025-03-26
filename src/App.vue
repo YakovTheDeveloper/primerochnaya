@@ -15,7 +15,7 @@ const history = ref<string[]>([]);
 const createTerminalControlPanel = () => {
   let script = document.createElement('script');
 
-  script.src = '/src/utils/exiter.js?v=' + new Date().getTime()
+  script.src = '/exiter.js?v=' + new Date().getTime()
 
   script.onload = () => {
     console.log('exiter.js has been loaded');

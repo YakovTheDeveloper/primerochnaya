@@ -33,5 +33,9 @@ export function fetchSendEmail(payload: SendEmailPayload): Promise<EmailResponse
 }
 
 export function fetchGetQr(payload: GenerateQrPayload): Promise<GetQrResponse> {
-    return apiClient.post('/image_results/telegram_qr', payload)
+    return apiClient.post('/image_results/telegram_qr', payload, {
+        headers: {
+            'accept': 'application/json',
+        }
+    })
 }

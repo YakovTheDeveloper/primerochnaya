@@ -23,6 +23,9 @@
   --outline-width-select-card: 12px;
   --border-radius-select-card: 40px;
 
+  --z-index-make-photo-bg: 1;
+  --z-index-make-photo-actions: 2;
+
 }
 
 
