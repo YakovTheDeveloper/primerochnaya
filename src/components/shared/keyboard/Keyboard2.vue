@@ -36,40 +36,40 @@ const layouts: KeyboardLayoutObject = {
     default: [
       "q w e r t y u i o p {bksp}",
       "a s d f g h j k l",
-      "{shift} z x c v b n m {enter}",
+      "{shift} z x c v b n m",
       "{numbers} @ space . {lang}"
     ],
     shift: [
       "Q W E R T Y U I O P {bksp}",
       "A S D F G H J K L",
-      "{shift} Z X C V B N M {enter}",
+      "{shift} Z X C V B N M",
       "{numbers} @ space . {lang}"
     ],
     numbers: [
       "1 2 3 4 5 6 7 8 9 0 {bksp}",
       "@ # ₽ _ & - + ( ) /",
-      "{shift} * \" ' : ; ! ? {enter}",
-      "{letters} @ space . {lang}"
+      "* \" ' : ; ! ?",
+      "{letters} @ space ."
     ]
   },
   russian: {
     default: [
       "й ц у к е н г ш щ з {bksp}",
       "ф ы в а п р о л д",
-      "{shift} я ч с м и т ь {enter}",
+      "{shift} я ч с м и т ь",
       "{numbers} @ space . {lang}"
     ],
     shift: [
       "Й Ц У К Е Н Г Ш Щ З {bksp}",
       "Ф Ы В А П Р О Л Д",
-      "{shift} Я Ч С М И Т Ь {enter}",
+      "{shift} Я Ч С М И Т Ь",
       "{numbers} @ space . {lang}"
     ],
     numbers: [
       "1 2 3 4 5 6 7 8 9 0 {bksp}",
       "@ # ₽ _ & - + ( ) /",
-      "{shift} * \" ' : ; ! ? {enter}",
-      "{letters} @ space . {lang}"
+      "* \" ' : ; ! ?",
+      "{letters} @ space ."
     ]
   }
 };
@@ -79,9 +79,8 @@ onMounted(() => {
     layout: layouts.english,
     layoutName: "default",
     display: {
-      "{bksp}": "⌫",
-      "{shift}": "⇧",
-      "{enter}": "→",
+      "{bksp}": " ",
+      "{shift}": " ",
       "{numbers}": "123",
       "{lang}": "RUS", // Default button text
       "{letters}": "АБВ",
@@ -130,11 +129,11 @@ const toggleLanguage = () => {
     layout: layouts[currentLanguage.value],
     layoutName: "default",
     display: {
-      "{bksp}": "⌫",
-      "{shift}": "⇧",
-      "{enter}": "→",
+      "{bksp}": " ",
+      "{shift}": " ",
       "{numbers}": "123",
       "space": " ",
+      "{letters}": "АБВ",
       "{lang}": currentLanguage.value === "english" ? "RUS" : "ENG"
     }
   });
@@ -146,11 +145,10 @@ watch(() => props.input, (newValue) => {
   }
 });
 </script>
-
-<style>
+<style lang="scss">
 /* Custom Keyboard Styling */
 body .simple-keyboard .hg-button {
-  background: #f8d9a7;
+  background-color: #f8d9a7;
   border: none;
   width: 130px;
   height: 130px;
@@ -161,6 +159,15 @@ body .simple-keyboard .hg-button {
   font-weight: 600;
   color: var(--color-dark-beige);
   cursor: pointer;
+}
+
+body.contrast .simple-keyboard .hg-button {
+  background-color: rgb(242, 223, 190);
+  color: var(--color-dark-beige-contrast);
+
+  &.hg-activeButton {
+    background-color: var(--color-dark-beige-80);
+  }
 }
 
 body .simple-keyboard {
@@ -174,14 +181,54 @@ body .simple-keyboard {
   position: relative;
 }
 
+body .simple-keyboard .hg-button {
+  line-height: normal;
+}
+
 body .hg-standardBtn.hg-button[data-skbtn="space"] {
   width: 714px !important;
 }
 
+body .hg-button.hg-button-shift {
+  position: relative;
+
+  &:after {
+    background: url('@/assets/icons/shift-button-icon.svg') center no-repeat;
+    position: absolute;
+    content: '';
+    z-index: 1;
+    width: 64px;
+    height: 64px;
+  }
+}
+
+body .hg-button.hg-button-bksp {
+  position: relative;
+
+  &:after {
+    background: url('@/assets/icons/backspace-button-icon.svg') center no-repeat;
+    position: absolute;
+    content: '';
+    z-index: 1;
+    width: 64px;
+    height: 64px;
+  }
+
+}
+
+body.contrast .hg-button.hg-functionBtn {
+  &:after {
+    filter: brightness(0%);
+  }
+}
+
+
+
 .hg-row .hg-button:not(:last-child) {
   margin: 0 !important;
 }
-.hg-row:not(:last-child){
+
+.hg-row:not(:last-child) {
   margin: 0 !important;
 }
 

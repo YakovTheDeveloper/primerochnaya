@@ -19,19 +19,18 @@
 </template>
 
 <script setup lang="ts">
+import { fetchGetQr } from '@/api';
 import ImgQR from '@/assets/img/mock/qr.png'
 import Loader from '@/components/shared/loader/Loader.vue';
 import VButton from '@/components/shared/v-button/VButton.vue';
 import { useGetQrStore } from '@/stores/getFileStore';
 import { usePhotoResultStore } from '@/stores/photoResultStore';
 import { storeToRefs } from 'pinia';
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 
 const store = storeToRefs(useGetQrStore())
-const { generateQrHandler } = useGetQrStore()
+const { generateQrHandler, reset } = useGetQrStore()
 const photoResultStore = storeToRefs(usePhotoResultStore())
-
-const qrSvgUrl = ref("");
 
 const showNotScanDescription = ref(false)
 
@@ -50,14 +49,18 @@ const notScanText = computed(() => showNotScanDescription.value
 Не сканируется код?
 `)
 
+const qrSvgUrl = computed(() => {
+    if (!store.data.value) return ''
+    const blob = new Blob([store.data.value], { type: "image/svg+xml" });
+    return URL.createObjectURL(blob)
+});
 
+onMounted(() => {
+    generateQrHandler()
+})
 
-onMounted(() => generateQrHandler())
-
-watch(() => store.data.value, (svg) => {
-    if (!svg) return
-    const blob = new Blob([svg], { type: "image/svg+xml" });
-    qrSvgUrl.value = URL.createObjectURL(blob)
+onUnmounted(() => {
+    reset()
 })
 
 </script>

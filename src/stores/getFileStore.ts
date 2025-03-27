@@ -29,11 +29,10 @@ export const useGetQrStore = defineStore('get-file-store-qr', () => {
   const { data, error, fetchData, loading, reset } = useFetch(fetchGetQr)
   const photoResultStore = storeToRefs(usePhotoResultStore())
 
-  const generateQrHandler = async () => {
-    await fetchData({
+  const generateQrHandler = () => {
+    fetchData({
       imageResults: [photoResultStore.photoId.value]
     })
-
   }
 
   return { generateQrHandler, data, loading, error, reset }
